@@ -22,7 +22,7 @@ services:
         container_name: nginx-techlint-gateway
         restart: unless-stopped
         ports:
-            - "50000:80"
+            - "54000:80"
         volumes:
             - ./:/var/www
             - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
@@ -36,7 +36,7 @@ services:
         container_name: postgres-techlint-gateway
         restart: unless-stopped
         ports:
-            - "50001:5432"
+            - "54001:5432"
         environment:
             POSTGRES_DB: gateway
             POSTGRES_USER: root
@@ -51,7 +51,7 @@ services:
         container_name: redis-techlint-gateway
         restart: unless-stopped
         ports:
-            - "50002:6379"
+            - "54002:6379"
         networks:
             - laravel
 
