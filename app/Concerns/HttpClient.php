@@ -80,6 +80,6 @@ trait HttpClient
             $client = $client->withToken($token);
         }
 
-        return $client->post($url, $data);
+        return $client->put($url, $data);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Constants\HttpCodes;
 use Illuminate\Http\JsonResponse;
 use App\Webservices\AuthWebservice;
 

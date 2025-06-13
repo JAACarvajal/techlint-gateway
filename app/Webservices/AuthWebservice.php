@@ -2,36 +2,46 @@
 
 namespace App\Webservices;
 
+use Illuminate\Http\Client\Response;
+
 class AuthWebservice extends BaseWebservice
 {
     /**
      * Login user
      *
-     * @param string $token JWT token to check
+     * @param array $data Request data
      */
-    public function login(array $data)
+    public function login(array $data): Response
     {
-        return $this->post(url: $this->getBaseUrl() . '/api/auth/login', headers: $this->getHeaders(), data: $this->formatRequestBody($data));
+        return $this->post(
+            url: $this->getBaseUrl() . '/api/auth/login',
+            headers: $this->getHeaders(),
+            data: $this->formatRequestBody($data)
+        );
     }
 
     /**
      * Check if the provided token is valid
-     *
-     * @param string $token JWT token to check
      */
-    public function check()
+    public function check(): Response
     {
-        return $this->get(url: $this->getBaseUrl() . '/api/auth/check', headers: $this->getHeaders(), token: $this->getToken());
+        return $this->get(
+            url: $this->getBaseUrl() . '/api/auth/check',
+            headers: $this->getHeaders(),
+            token: $this->getToken()
+        );
     }
 
     /**
      * Logout user
-     *
-     * @param string $token JWT token
      */
-    public function logout()
+    public function logout(): Response
     {
-        return $this->post(url: $this->getBaseUrl() . '/api/auth/logout', headers: $this->getHeaders(), token: $this->getToken());
+        return $this->post(
+            url: $this->getBaseUrl() . '/api/auth/logout',
+            headers: $this->getHeaders(),
+            token: $this->getToken()
+        );
     }
 
     /**
