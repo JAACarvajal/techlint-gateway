@@ -23,13 +23,9 @@ class AuthService extends BaseService
      */
     public function check(): JsonResponse
     {
-        try {
-            $response = $this->webservice->check();
+        $response = $this->webservice->check();
 
-            return self::responseSuccess($response->json(), $response->status());
-        } catch (\Exception $e) {
-            return self::handleException($e);
-        }
+        return self::responseSuccess($response->json(), $response->status());
     }
 
     /**
@@ -39,29 +35,19 @@ class AuthService extends BaseService
      */
     public function login(array $data): JsonResponse
     {
-        try {
-            $response = $this->webservice->login($data);
+        $response = $this->webservice->login($data);
 
-            return self::responseSuccess($response->json(), $response->status());
-        } catch (\Exception $e) {
-            return self::handleException($e);
-        }
+        return self::responseSuccess($response->json(), $response->status());
     }
 
     /**
      * Logout user
-     *
-     * @param string $token JWT token
      */
     public function logout(): JsonResponse
     {
-        try {
-            $response = $this->webservice->logout();
+        $response = $this->webservice->logout();
 
-            return self::responseSuccess($response->json(), $response->status());
-        } catch (\Exception $e) {
-            return self::handleException($e);
-        }
+        return self::responseSuccess($response->json(), $response->status());
     }
 
     /**

@@ -25,29 +25,21 @@ class IpAddressService extends BaseService
      */
     public function create(array $data): JsonResponse
     {
-        try {
-            $response = $this->webservice->create($data);
+        $response = $this->webservice->create($data);
 
-            return self::responseSuccess($response->json(), $response->status());
-        } catch (\Exception $e) {
-            return self::handleException($e);
-        }
+        return self::responseSuccess($response->json(), $response->status());
     }
 
     /**
      * Delete an IP address by its ID
      *
-     * @param int $ipId ID of the IP address to delete
+     * @param int $id ID of the IP address to delete
      */
     public function destroy(int $id): JsonResponse
     {
-        try {
-            $response = $this->webservice->destroy($id);
+        $response = $this->webservice->destroy($id);
 
-            return self::responseSuccess($response->json(), $response->status());
-        } catch (\Exception $e) {
-            return self::handleException($e);
-        }
+        return self::responseSuccess($response->json(), $response->status());
     }
 
     /**
@@ -57,13 +49,9 @@ class IpAddressService extends BaseService
      */
     public function list(array $query): JsonResponse
     {
-        try {
-            $response = $this->webservice->list($query);
+        $response = $this->webservice->list($query);
 
-            return self::responseSuccess($response->json(), $response->status());
-        } catch (\Exception $e) {
-            return self::handleException($e);
-        }
+        return self::responseSuccess($response->json(), $response->status());
     }
 
     /**
@@ -74,12 +62,8 @@ class IpAddressService extends BaseService
      */
     public function update(int $id, array $data): JsonResponse
     {
-        try {
-            $response = $this->webservice->update($id, $data);
+        $response = $this->webservice->update($id, $data);
 
-            return self::responseSuccess($response->json(), $response->status());
-        } catch (\Exception $e) {
-            return self::handleException($e);
-        }
+        return self::responseSuccess($response->json(), $response->status());
     }
 }
