@@ -55,33 +55,22 @@ services:
         networks:
             - laravel
 
-    # scheduler:
-    #     image: laravel-app
-    #     container_name: laravel-scheduler
-    #     restart: unless-stopped
-    #     working_dir: /var/www
-    #     volumes:
-    #         - ./:/var/www
-    #     command: |
-    #         sh -c "while [ true ]; do php artisan schedule:run --verbose --no-interaction & sleep 60; done"
-    #     networks:
-    #         - laravel
-    #     depends_on:
-    #         - app
-
-    # queue:
-    #     image: laravel-app
-    #     container_name: laravel-queue
-    #     restart: unless-stopped
-    #     working_dir: /var/www
-    #     volumes:
-    #         - ./:/var/www
-    #     command: php artisan queue:work --verbose --tries=3 --timeout=90
-    #     networks:
-    #         - laravel
-    #     depends_on:
-    #         - app
-    #         - redis
+    queue:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: laravel-app
+        container_name: queue-techlint-gateway
+        restart: unless-stopped
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        command: php artisan queue:work --verbose --tries=3 --timeout=90
+        networks:
+            - laravel
+        depends_on:
+            - app
+            - redis
 
 volumes:
     pgdata:
