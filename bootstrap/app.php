@@ -2,6 +2,7 @@
 
 use App\Constants\HttpCodes;
 use App\Exceptions\ExceptionHandler;
+use App\Http\Middleware\{AuditLogMiddleware, CheckBearerToken};
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\{Exceptions, Middleware};
 use Illuminate\Http\Request;
@@ -20,6 +21,10 @@ return Application::configure(basePath: dirname(__DIR__))
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'audit.log'   => AuditLogMiddleware::class,
+            'check.token' => CheckBearerToken::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (Throwable $e, Request $request) {

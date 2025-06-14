@@ -59,18 +59,18 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        image: laravel-app
+        image: app-laravel-docker
         container_name: queue-techlint-gateway
         restart: unless-stopped
         working_dir: /var/www
         volumes:
-            - ./:/var/www
-        command: php artisan queue:work --verbose --tries=3 --timeout=90
-        networks:
-            - laravel
+            - .:/var/www
+        command: php artisan queue:listen --verbose --tries=3 --timeout=90 # use queue:work for production
         depends_on:
             - app
             - redis
+        networks:
+            - laravel
 
 volumes:
     pgdata:

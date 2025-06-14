@@ -30,7 +30,7 @@ trait ApiResponse
      */
     protected static function responseSuccess(mixed $data = [], int $code = HttpCodes::OK): JsonResponse
     {
-        return response()->json(['data' => $data], $code);
+        return response()->json($data, $code);
     }
 
     /**
