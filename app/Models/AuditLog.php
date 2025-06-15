@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,9 +17,6 @@ class AuditLog extends Model
         'target_type',
         'target_id',
         'changes',
-        'ip_address',
-        'user_agent',
-        'request_url',
     ];
 
     /**

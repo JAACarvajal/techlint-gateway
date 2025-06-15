@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\AuditLog;
+use App\Models\AuditLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 

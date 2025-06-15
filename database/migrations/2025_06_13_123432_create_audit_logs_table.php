@@ -18,9 +18,6 @@ return new class extends Migration
             $table->string('target_type')->nullable();
             $table->unsignedBigInteger('target_id')->nullable();
             $table->json('changes')->nullable();
-            $table->ipAddress('ip_address')->nullable();
-            $table->text('user_agent')->nullable();
-            $table->text('request_url')->nullable();
             $table->timestamps();
         });
     }
