@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Filters\V1\Filter;
+use App\Filters\Filter;
 use Illuminate\Database\Eloquent\{Collection, Model};
 use Illuminate\Pagination\LengthAwarePaginator;
 

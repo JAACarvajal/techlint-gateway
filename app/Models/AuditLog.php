@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Filters\V1\Filter;
+use App\Filters\Filter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -56,7 +56,7 @@ class AuditLog extends Model
      * Scope to apply filters to the Eloquent query builder
      *
      * @param \Illuminate\Database\Eloquent\Builder $builder Eloquent query builder instance
-     * @param \App\Filters\V1\Filter $filters Filters instance containing the filters to apply
+     * @param \App\Filters\Filter $filters Filters instance containing the filters to apply
      */
     public function scopeFilter(Builder $builder, Filter $filters): Builder
     {

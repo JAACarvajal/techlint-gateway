@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Constants\HttpCodes;
-use App\Filters\V1\AuditLogFilter;
+use App\Filters\AuditLogFilter;
 use App\Http\Resources\AuditLogResource;
 use App\Repositories\AuditLogRepository;
 use Illuminate\Http\JsonResponse;
