@@ -4,6 +4,7 @@ namespace App\Concerns;
 
 use App\Constants\HttpCodes;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 trait ApiResponse
 {
@@ -30,6 +31,10 @@ trait ApiResponse
      */
     protected static function responseSuccess(mixed $data = [], int $code = HttpCodes::OK): JsonResponse
     {
+        if ($data instanceof JsonResource) {
+            return $data->response()->setStatusCode($code);
+        }
+
         return response()->json($data, $code);
     }
 
