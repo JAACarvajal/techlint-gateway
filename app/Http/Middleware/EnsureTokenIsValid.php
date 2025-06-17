@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Constants\HttpCodes;
 use Closure;
 use App\Webservices\AuthWebservice;
 use Illuminate\Auth\Access\AuthorizationException;

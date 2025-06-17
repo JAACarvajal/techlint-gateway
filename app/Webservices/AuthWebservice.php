@@ -45,6 +45,18 @@ class AuthWebservice extends BaseWebservice
     }
 
     /**
+     * Refresh token
+     */
+    public function refresh(): Response
+    {
+        return $this->post(
+            url: $this->getBaseUrl() . '/api/auth/refresh',
+            headers: $this->getHeaders(),
+            token: $this->getToken()
+        );
+    }
+
+    /**
      * Get the base URL for the authentication service
      */
     public function getBaseUrl(): string

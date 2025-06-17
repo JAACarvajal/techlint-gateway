@@ -55,10 +55,8 @@ class AuthService extends BaseService
      */
     public function refresh(): JsonResponse
     {
-        try {
+        $response = $this->webservice->refresh();
 
-        } catch (\Exception $e) {
-            return self::handleException($e);
-        }
+        return self::responseSuccess($response->json(), $response->status());
     }
 }

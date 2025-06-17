@@ -28,7 +28,7 @@ class AuthController extends Controller
      */
     public function check(Request $request)
     {
-        return $this->service->check($request->bearerToken() ?? '');
+        return $this->service->check();
     }
 
     /**
@@ -43,7 +43,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        return $this->service->logout($request->bearerToken() ?? '');
+        return $this->service->logout();
     }
 
     /**

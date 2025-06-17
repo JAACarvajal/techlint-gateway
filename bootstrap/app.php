@@ -6,6 +6,7 @@ use App\Http\Middleware\{AuditLogMiddleware, EnsureTokenIsValid};
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\{Exceptions, Middleware};
 use Illuminate\Http\Request;
+use Illuminate\Http\Middleware\HandleCors;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -21,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->prepend(HandleCors::class);
         $middleware->alias([
             'audit.log'    => AuditLogMiddleware::class,
             'ensure.token' => EnsureTokenIsValid::class,
