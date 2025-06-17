@@ -18,6 +18,6 @@ Route::middleware(['ensure.token', 'audit.log'])->group(function () {
     });
 
     Route::apiResource('ip-addresses', IpAddressController::class);
-    Route::apiResource('audit-log', AuditLogController::class);
+    Route::apiResource('audit-logs', AuditLogController::class);
 });
 

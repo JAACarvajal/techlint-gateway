@@ -24,7 +24,7 @@ class AuditLogResource extends JsonResource
                 'target_id'     => $this->target_id,
                 'changes'       => $this->changes,
                 $this->mergeWhen(
-                    $request->routeIs('audit-log.*'),
+                    $request->routeIs('audit-logs.*'),
                     [
                         'created_at' => $this->created_at,
                         'updated_at' => $this->updated_at

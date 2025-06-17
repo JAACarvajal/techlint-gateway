@@ -62,15 +62,6 @@ class AuditLogFilter extends Filter
     }
 
     /**
-     * Filter by label
-     * @param string $value
-     */
-    public function label($value): Builder
-    {
-        return $this->builder->where('label', $value);
-    }
-
-    /**
      * Filter by target_type
      * @param string $value
      */
@@ -86,15 +77,6 @@ class AuditLogFilter extends Filter
     public function targetId($value): Builder
     {
         return $this->builder->where('target_id', $value);
-    }
-
-    /**
-     * Include related models
-     * @param string $value
-     */
-    public function actions($value): Builder
-    {
-        return $this->builder->where('action', $value);
     }
 
     /**
