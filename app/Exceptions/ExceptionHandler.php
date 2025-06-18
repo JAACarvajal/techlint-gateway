@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\{AccessDeniedHttpException, HttpException, NotFoundHttpException};
 use Throwable;
@@ -115,6 +116,7 @@ class ExceptionHandler
             foreach ($messages as $message) {
                 $errors[] = [
                     'attribute' => $attribute,
+                    'field'     => Str::afterLast($attribute, '.'),
                     'message'   => $message,
                 ];
             }
