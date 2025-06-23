@@ -26,8 +26,7 @@ class AuditLogResource extends JsonResource
                 $this->mergeWhen(
                     $request->routeIs('audit-logs.*'),
                     [
-                        'created_at' => $this->created_at,
-                        'updated_at' => $this->updated_at
+                        'created_at' => $this->created_at->toDateTimeString(),
                     ]
                 ),
             ],

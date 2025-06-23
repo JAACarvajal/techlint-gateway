@@ -28,6 +28,7 @@ abstract class BaseAuditLogRequest extends BaseRequest
         'sort',
         'filter',
         'include',
+        'rows',
     ];
 
     /**

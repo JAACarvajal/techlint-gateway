@@ -24,9 +24,9 @@ class AuditLogService extends BaseService
     /**
      * Check if user is authenticated
      */
-    public function list(array $filters): JsonResponse
+    public function list(array $query): JsonResponse
     {
-        $auditLogs = $this->repository->paginate(new AuditLogFilter($filters));
+        $auditLogs = $this->repository->paginate(new AuditLogFilter($query), $query['rows'] ?? 10);
 
         return self::responseSuccess(
             AuditLogResource::collection($auditLogs),

@@ -25,7 +25,8 @@ class ListAuditLogRequest extends BaseAuditLogRequest
             'include' => ['sometimes'],
             'filter'  => ['sometimes', 'array'],
             'sort'    => ['sometimes', 'string'],
-            'page'    => ['sometimes', 'string']
+            'page'    => ['sometimes', 'string'],
+            'rows'    => ['sometimes', 'string']
         ];
     }
 }
