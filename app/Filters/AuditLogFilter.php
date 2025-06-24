@@ -10,9 +10,9 @@ class AuditLogFilter extends Filter
      * @var array
      */
     protected $sortables = [
-        'actorUserId',
         'action',
         'label',
+        'actorUserId' => 'actor_user_id',
         'targetType' => 'target_type',
         'targetId' => 'target_id',
         'createdAt' => 'created_at',

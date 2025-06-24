@@ -52,6 +52,12 @@ class AuditLogJob implements ShouldQueue
     protected string $routeName;
 
     /**
+     * Request data
+     * @var
+     */
+    protected ?array $requestData;
+
+    /**
      * Data to be logged
      * @var
      */
@@ -60,9 +66,10 @@ class AuditLogJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(string $routeName, ?array $responseData = null)
+    public function __construct(string $routeName, ?array $requestData = null, ?array $responseData = null)
     {
         $this->routeName = $routeName;
+        $this->requestData = $requestData;
         $this->responseData = $responseData;
     }
 
@@ -95,56 +102,23 @@ class AuditLogJob implements ShouldQueue
             'action'        => $action,
             'target_type'   => $targetType,
             'target_id'     => $targetId,
-            'changes'       => $this->buildChanges($targetId),
+            'changes'       => $this->buildChanges(),
         ];
     }
 
     /**
      * Build the changes for the audit log
      *
-     * @param string $routeName Route name
-     * @param array $attributes Attributes from the response data
      * @param string $targetId Target ID
+     * @param string $action Action
      */
-    protected function buildChanges(string $targetId): ?array
+    protected function buildChanges(): ?array
     {
         if (in_array($this->routeName, $this->exludeChanges, true)) {
             return null;
         }
 
-        $changes = ['old' => [], 'new' => []];
-
-        $latestAudit = AuditLog::where('target_id', $targetId)
-            ->latest('created_at')
-            ->value('changes');
-
-        $oldAttributes = $latestAudit['new'] ?? [];
-        $newAttributes = $this->getNewAttributes();
-
-        if (empty($newAttributes) == true) {
-            $changes['old'] = $oldAttributes;
-            $changes['new'] = null;
-
-            return $changes;
-        }
-
-        if (empty($oldAttributes) === true) {
-            $changes['old'] = null;
-            $changes['new'] = $newAttributes;
-
-            return $changes;
-        }
-
-        foreach ($newAttributes as $key => $newValue) {
-            $oldValue = $oldAttributes[$key] ?? null;
-
-            if ($newValue != $oldValue) {
-                $changes['old'][$key] = $oldValue;
-                $changes['new'][$key] = $newValue;
-            }
-        }
-
-        return $changes;
+        return $this->getNewAttributes();
     }
 
     /**
@@ -153,9 +127,9 @@ class AuditLogJob implements ShouldQueue
      */
     protected function getNewAttributes(): array
     {
-        return Arr::except(
+        return Arr::only(
             Arr::get($this->responseData, 'data.attributes', []),
-            $this->excludeAttributes
+            array_keys($this->requestData)
         );
     }
 

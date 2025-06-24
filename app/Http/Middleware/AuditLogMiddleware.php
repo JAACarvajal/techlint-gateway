@@ -21,6 +21,7 @@ class AuditLogMiddleware
         $response = $next($request);
 
         $routeName = $request->route()?->getName();
+        $requestData = $request->input('data.attributes', []);
         $responseData = json_decode($response->getContent(), true);
 
         if ($response->isSuccessful() === false) {
@@ -28,8 +29,7 @@ class AuditLogMiddleware
             return $response;
         }
 
-        AuditLogJob::dispatch($routeName, $responseData);
-
+        AuditLogJob::dispatch($routeName, $requestData, $responseData);
         $this->stripMetaFromResponse($response, $responseData);
 
         return $response;
